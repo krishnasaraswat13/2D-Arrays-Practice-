@@ -1,0 +1,88 @@
+//1 from topright to downleft only
+class Solution {
+    public int[] findDiagonalOrder(int[][] arr) {
+         int n=arr.length;
+        int m=arr[0].length;
+        int i=0;
+        ArrayList<Integer> ls=new ArrayList<>();
+        while(i<m){
+            int r=0;int e=i;
+            while(r>=0 && r<n && e>=0 && e<m){
+                ls.add(arr[r][e]);
+                r++;
+                e--;
+            }
+            i++;
+        }
+        int j=1;
+        while(j<n){
+            int r=m-1;
+            int e=j;
+            while(r>=0 && r<m && e>=0 && e<n){
+                ls.add(arr[e][r]);
+                e++;
+                r--;
+                
+            }
+            j++;
+        }
+        int nums[]=new int[ls.size()];
+        for(int t=0;t<ls.size();t++){
+            nums[t]=ls.get(t);
+        }
+        return  nums;
+    }
+}
+//zig zag traversal
+class Solution {
+    public int[] findDiagonalOrder(int[][] arr) {
+         int n=arr.length;
+        int m=arr[0].length;
+        int i=0;
+        ArrayList<ArrayList<Integer>> ls=new ArrayList<>();
+        int c=0;
+        int s=arr.length-1+arr[0].length;
+        for(int p=0;p<=s;p++){
+            ls.add(new ArrayList<>());
+        }
+        while(i<m){
+            int r=0;int e=i;
+            while(r>=0 && r<n && e>=0 && e<m){
+                ls.get(c).add(arr[r][e]);
+                r++;
+                e--;
+            }
+            i++;
+            c++;
+        }
+        int j=1;
+        while(j<n){
+            int r=m-1;
+            int e=j;
+            while(r>=0 && r<m && e>=0 && e<n){
+                ls.get(c).add(arr[e][r]);
+                e++;
+                r--;
+                
+            }
+            j++;
+            c++;
+        }
+        int nums[]=new int[n*m];
+        int index=0;
+        for (int v = 0; v < c; v++) {
+            if (v % 2 == 0) {
+                Collections.reverse(ls.get(v));
+            }
+            for (int num : ls.get(v)) {
+               nums[index++] = num;
+            }
+        }
+        return  nums;
+    }
+}
+
+//there is more optimized solution for zigzag traversal without using arraylist of arraylist
+//as using linkedlist or deque we can add elements at front in O(1) time and by using direct 
+//indexing we can avoid using arraylist of arraylist
+ 

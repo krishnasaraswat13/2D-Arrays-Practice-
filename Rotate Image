@@ -1,0 +1,52 @@
+//this is if we want to rotate in  90degree clockwise direction
+
+class Solution {
+    public void rotate(int[][] mat) {
+        for(int i=0;i<mat.length;i++){
+            for(int j=i+1;j<mat.length;j++){
+                int temp=mat[i][j];
+                mat[i][j]=mat[j][i];
+                mat[j][i]=temp;
+            }
+        }
+        int n=mat.length;
+    
+          for(int i=0;i<mat.length;i++){
+             int j=0;
+            while(j<mat.length/2){
+              int temp=mat[i][j];
+                mat[i][j]=mat[i][n-j-1];
+                mat[i][n-j-1]=temp;
+                 j++;
+             } 
+           
+        }
+    }
+}
+
+//for anticlockwise direction
+
+class Solution {
+    // Function to rotate matrix anticlockwise by 90 degrees.
+    static void rotateby90(int mat[][]) {
+        // code here
+        for(int i=0;i<mat.length;i++){
+            for(int j=i+1;j<mat.length;j++){
+                int temp=mat[i][j];
+                mat[i][j]=mat[j][i];
+                mat[j][i]=temp;
+            }
+        }
+        int n=mat.length;
+        
+        int i=0;
+        while(i<mat.length/2){
+          for(int j=0;j<mat.length;j++){
+              int temp=mat[i][j];
+                mat[i][j]=mat[n-i-1][j];
+                mat[n-1-i][j]=temp;
+          } 
+          i++;
+        }
+    }
+}
